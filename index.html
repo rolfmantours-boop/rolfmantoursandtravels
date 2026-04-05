@@ -183,7 +183,7 @@
       <p>Fill in the form and our team will get back to you within a few hours to confirm your booking and share all the details you need.</p>
       <div class="contact-list" id="contact">
         <div class="contact-item"><span class="contact-icon">📍</span> Mtwapa, Kilifi County, Kenya</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> +254 700 000 000</div>
+        <div class="contact-item"><span class="contact-icon">📞</span> +254 768154892</div>
         <div class="contact-item"><span class="contact-icon">✉️</span> info@rolfamtours.co.ke</div>
         <div class="contact-item"><span class="contact-icon">🕐</span> Mon–Sun, 7:00 AM – 7:00 PM</div>
       </div>
@@ -353,7 +353,7 @@
   }
 
   function sendWhatsApp() {
-    const waNumber = '254700000000'; // ← Replace with your real number
+    const waNumber = '254768154892'; // ← Replace with your real number
     const msg = `🌊 *Rolfam Tours — Booking & Payment*\n\n👤 Name: ${lastBooking.name}\n📞 Phone: ${lastBooking.phone}\n✉️ Email: ${lastBooking.email}\n🗺️ Tour: ${lastBooking.tour}\n📅 Date: ${lastBooking.date}\n👥 Guests: ${lastBooking.guests}\n📝 Requests: ${lastBooking.requests}\n\n💰 Deposit Paid: KES ${depositAmount.toLocaleString()}\n\n_M-Pesa confirmation screenshot attached_`;
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
   }
