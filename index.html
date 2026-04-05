@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rolfam Tours & Travel — Mtwapa, Kenya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --sand: #f2ead8;
+    --ocean: #1a6b7c;
+    --deep: #0d3d47;
+    --coral: #e8714a;
+    --foam: #e8f4f7;
+    --text: #1c2b2e;
+    --muted: #5a7a82;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--text); overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(13,61,71,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--sand); letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--coral); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(242,234,216,0.75); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--coral); }
+  .nav-cta { background: var(--coral); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .nav-cta:hover { background: #d45e38; }
+  .hero { min-height: 100vh; background: linear-gradient(to bottom, rgba(13,61,71,0.55) 0%, rgba(13,61,71,0.2) 50%, rgba(13,61,71,0.7) 100%), url('https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=1600&q=80') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 4rem; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; background: linear-gradient(to top, var(--sand), transparent); }
+  .hero-tag { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 1rem; animation: fadeUp 0.8s ease both; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.05; color: var(--white); max-width: 700px; animation: fadeUp 0.9s 0.1s ease both; }
+  .hero h1 em { font-style: italic; color: var(--sand); }
+  .hero p { margin-top: 1.5rem; max-width: 420px; color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.7; animation: fadeUp 1s 0.2s ease both; }
+  .hero-btns { margin-top: 2.5rem; display: flex; gap: 1rem; animation: fadeUp 1s 0.3s ease both; }
+  .btn-primary { background: var(--coral); color: white; border: none; padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .btn-primary:hover { background: #d45e38; }
+  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.5); padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 1; animation: fadeUp 1s 0.5s ease both; }
+  .scroll-line { width: 1px; height: 40px; background: rgba(255,255,255,0.3); animation: scrollPulse 2s infinite; }
+  .stats { background: var(--deep); display: flex; justify-content: space-around; align-items: center; padding: 2rem 4rem; flex-wrap: wrap; gap: 1rem; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 600; color: var(--coral); }
+  .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,234,216,0.6); margin-top: 0.2rem; }
+  .section { padding: 6rem 4rem; }
+  .section-tag { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2; color: var(--deep); max-width: 520px; }
+  .section-title em { font-style: italic; }
+  .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .tour-card { background: white; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(13,61,71,0.08); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+  .tour-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(13,61,71,0.15); }
+  .tour-img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.5s; }
+  .tour-card:hover .tour-img { transform: scale(1.04); }
+  .tour-img-wrap { overflow: hidden; }
+  .tour-body { padding: 1.5rem; }
+  .tour-badge { display: inline-block; background: var(--foam); color: var(--ocean); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 20px; margin-bottom: 0.8rem; }
+  .tour-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--deep); margin-bottom: 0.5rem; }
+  .tour-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+  .tour-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--foam); }
+  .tour-price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--deep); }
+  .tour-price span { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--muted); }
+  .btn-book { background: var(--ocean); color: white; border: none; padding: 0.55rem 1.2rem; border-radius: 2px; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s; }
+  .btn-book:hover { background: var(--deep); }
+  .why { background: var(--deep); }
+  .why .section-title { color: var(--sand); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .why-item { text-align: center; }
+  .why-icon { width: 56px; height: 56px; background: rgba(232,113,74,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.5rem; border: 1px solid rgba(232,113,74,0.3); }
+  .why-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--sand); margin-bottom: 0.5rem; }
+  .why-item p { font-size: 0.86rem; color: rgba(242,234,216,0.6); line-height: 1.65; }
+  #booking { background: var(--foam); }
+  .booking-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .booking-info .section-title { color: var(--deep); }
+  .booking-info p { margin-top: 1.2rem; color: var(--muted); line-height: 1.7; font-size: 0.95rem; }
+  .contact-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .contact-icon { font-size: 1.1rem; }
+  .booking-form { background: white; padding: 2.5rem; border-radius: 6px; box-shadow: 0 8px 40px rgba(13,61,71,0.1); }
+  .booking-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--deep); margin-bottom: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid #d8e8eb; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: #fafcfd; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--ocean); box-shadow: 0 0 0 3px rgba(26,107,124,0.1); background: white; }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .btn-submit { width: 100%; background: var(--coral); color: white; border: none; padding: 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s; margin-top: 0.5rem; }
+  .btn-submit:hover { background: #d45e38; }
+  .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 0.8rem; }
+  .testimonials { background: white; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .testi-card { background: var(--sand); padding: 2rem; border-radius: 4px; position: relative; }
+  .testi-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--coral); opacity: 0.25; position: absolute; top: -0.5rem; left: 1.2rem; line-height: 1; }
+  .testi-text { font-size: 0.92rem; line-height: 1.7; color: var(--muted); position: relative; }
+  .testi-author { margin-top: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+  .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ocean); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 500; }
+  .testi-name { font-size: 0.88rem; font-weight: 500; color: var(--deep); }
+  .testi-loc { font-size: 0.78rem; color: var(--muted); }
+  .stars { color: var(--coral); font-size: 0.85rem; margin-bottom: 0.5rem; }
+  footer { background: var(--deep); color: rgba(242,234,216,0.6); padding: 3rem 4rem 2rem; text-align: center; }
+  footer .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--sand); margin-bottom: 0.5rem; }
+  footer .logo span { color: var(--coral); }
+  footer p { font-size: 0.85rem; line-height: 1.7; max-width: 400px; margin: 0 auto; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .footer-links a { color: rgba(242,234,216,0.5); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--coral); }
+  .footer-bottom { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(13,61,71,0.7); z-index: 999; backdrop-filter: blur(4px); justify-content: center; align-items: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: white; border-radius: 6px; padding: 2.5rem; max-width: 500px; width: 90%; position: relative; animation: modalIn 0.3s ease; }
+  .modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
+  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--deep); margin-bottom: 0.3rem; }
+  .modal .modal-tour-price { color: var(--coral); font-size: 1.1rem; margin-bottom: 1.5rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 0.8; transform: scaleY(1.3); } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem; }
+    .section { padding: 4rem 1.5rem; }
+    .stats { padding: 1.5rem; gap: 1.5rem; }
+    .booking-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rolfam<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#tours">Tours</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Mtwapa, Kenya · Est. 2020</div>
+  <h1>Discover the <em>Coast's</em><br>Hidden Beauty</h1>
+  <p>From deep-sea adventures to sunset dhow cruises — Rolfam Tours & Travel brings you the authentic soul of the Kenyan coast.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'})">Explore Tours</button>
+    <button class="btn-outline" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Trip</button>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Happy Guests</div></div>
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Tour Packages</div></div>
+  <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years Experience</div></div>
+</div>
+
+<section class="section" id="tours">
+  <div class="section-tag">Our Experiences</div>
+  <h2 class="section-title">Coastal Tours <em>Crafted</em><br>for Every Traveller</h2>
+  <div class="tours-grid" id="toursGrid"></div>
+</section>
+
+<section class="section why" id="about">
+  <div class="section-tag" style="color:var(--coral)">Why Choose Us</div>
+  <h2 class="section-title">We Know <em>This Coast</em><br>Like No One Else</h2>
+  <div class="why-grid">
+    <div class="why-item"><div class="why-icon">🐬</div><h3>Local Expertise</h3><p>Born and raised in Mtwapa — we know every reef, creek, and hidden beach along the coast.</p></div>
+    <div class="why-item"><div class="why-icon">🛡️</div><h3>Safety First</h3><p>All equipment is certified and our guides are trained in first aid and water safety.</p></div>
+    <div class="why-item"><div class="why-icon">🌊</div><h3>Small Groups</h3><p>We keep groups intimate so every guest gets a personal, unhurried experience.</p></div>
+    <div class="why-item"><div class="why-icon">♻️</div><h3>Eco Responsible</h3><p>We respect marine ecosystems — no touching reefs, no plastic, leave-no-trace practices.</p></div>
+  </div>
+</section>
+
+<section class="section" id="booking">
+  <div class="booking-wrap">
+    <div class="booking-info">
+      <div class="section-tag">Book Your Adventure</div>
+      <h2 class="section-title">Ready to <em>Explore</em><br>the Coast?</h2>
+      <p>Fill in the form and our team will get back to you within a few hours to confirm your booking and share all the details you need.</p>
+      <div class="contact-list" id="contact">
+        <div class="contact-item"><span class="contact-icon">📍</span> Mtwapa, Kilifi County, Kenya</div>
+        <div class="contact-item"><span class="contact-icon">📞</span> +254 700 000 000</div>
+        <div class="contact-item"><span class="contact-icon">✉️</span> info@rolfamtours.co.ke</div>
+        <div class="contact-item"><span class="contact-icon">🕐</span> Mon–Sun, 7:00 AM – 7:00 PM</div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <h3>Book a Tour</h3>
+      <div id="bookingFormWrap">
+        <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="booking"/>
+          <p style="display:none"><input name="bot-field"/></p>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="first-name" id="firstName" placeholder="e.g. John" required/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="last-name" id="lastName" placeholder="e.g. Kamau" required/></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" name="email" id="email" placeholder="you@example.com" required/></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" id="phone" placeholder="+254 7XX XXX XXX" required/></div>
+          <div class="form-group">
+            <label>Select Tour</label>
+            <select name="tour" id="tourSelect" required>
+              <option value="">— Choose a tour —</option>
+              <option>Dhow Sunset Cruise</option>
+              <option>Deep Sea Fishing</option>
+              <option>Snorkelling at Watamu Marine Park</option>
+              <option>Mtwapa Creek Mangrove Tour</option>
+              <option>Kilifi Bay Boat Safari</option>
+              <option>Mida Creek Kayak Adventure</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Preferred Date</label><input type="date" name="date" id="tourDate" required/></div>
+            <div class="form-group"><label>Number of Guests</label><input type="number" name="guests" id="guests" min="1" max="20" placeholder="e.g. 2" required/></div>
+          </div>
+          <div class="form-group"><label>Special Requests</label><textarea name="requests" id="requests" placeholder="Dietary needs, accessibility, questions…"></textarea></div>
+          <button type="submit" class="btn-submit">Confirm Booking Request</button>
+          <p class="form-note">No payment required now · We'll contact you to confirm</p>
+        </form>
+      </div>
+      <div id="successMsg" style="display:none">
+        <div style="background:#e8f7ed;border:1px solid #a8d8b4;border-radius:6px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:0.3rem">🌊</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#2e7d52;font-weight:600;">Booking Request Received!</div>
+          <div id="bookingSummary" style="font-size:0.85rem;color:#4a6b56;margin-top:0.4rem;"></div>
+        </div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--deep);margin-bottom:0.3rem;">Secure Your Spot</div>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;">Pay a deposit via M-Pesa to confirm your booking. Send your M-Pesa confirmation SMS to us via WhatsApp after paying.</p>
+        <div style="background:var(--foam);border-radius:6px;padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Deposit (50%)</span>
+          <span id="depositAmt" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--coral);font-weight:600;"></span>
+        </div>
+        <div style="display:flex;gap:0.5rem;margin-bottom:1.2rem;">
+          <button onclick="showPayTab('paybill')" id="tabPaybill" style="flex:1;padding:0.6rem;border:2px solid var(--ocean);background:var(--ocean);color:white;border-radius:3px;font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Pay Bill</button>
+          <button onclick="showPayTab('till')" id="tabTill" style="flex:1;padding:0.6rem;border:2px solid #d8e8eb;background:white;color:var(--muted);border-radius:3px;font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Till Number</button>
+        </div>
+        <div id="panelPaybill">
+          <div style="background:#f9f9f9;border:1px solid #e0ecef;border-radius:6px;padding:1.2rem;margin-bottom:1rem;">
+            <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;">M-Pesa Pay Bill Steps</div>
+            <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:0.55rem;">
+              <li style="font-size:0.88rem;color:var(--text);">Go to <strong>M-Pesa</strong> → <strong>Lipa na M-Pesa</strong> → <strong>Pay Bill</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Business No: <strong style="color:var(--ocean);font-size:1rem;">247247</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Account No: <strong style="color:var(--ocean);font-size:1rem;">ROLFAM</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Amount: <strong id="pbAmt" style="color:var(--coral);">—</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Enter your M-Pesa PIN and confirm</li>
+            </ol>
+          </div>
+          <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:4px;padding:0.8rem 1rem;font-size:0.82rem;color:#7a6000;">⚠️ Use your <strong>full name</strong> as the account reference so we can match your payment.</div>
+        </div>
+        <div id="panelTill" style="display:none">
+          <div style="background:#f9f9f9;border:1px solid #e0ecef;border-radius:6px;padding:1.2rem;margin-bottom:1rem;">
+            <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;">M-Pesa Till Number Steps</div>
+            <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:0.55rem;">
+              <li style="font-size:0.88rem;color:var(--text);">Go to <strong>M-Pesa</strong> → <strong>Lipa na M-Pesa</strong> → <strong>Buy Goods & Services</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Till No: <strong style="color:var(--ocean);font-size:1rem;">000000</strong> <span style="font-size:0.78rem;color:var(--muted)">(replace with your till)</span></li>
+              <li style="font-size:0.88rem;color:var(--text);">Amount: <strong id="tillAmt" style="color:var(--coral);">—</strong></li>
+              <li style="font-size:0.88rem;color:var(--text);">Enter your M-Pesa PIN and confirm</li>
+            </ol>
+          </div>
+          <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:4px;padding:0.8rem 1rem;font-size:0.82rem;color:#7a6000;">⚠️ Screenshot your M-Pesa confirmation and send it to us on WhatsApp.</div>
+        </div>
+        <button onclick="sendWhatsApp()" style="margin-top:1.2rem;width:100%;background:#25D366;color:white;border:none;padding:0.9rem;border-radius:3px;font-size:0.9rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.04em;">💬 Send M-Pesa Confirmation via WhatsApp</button>
+        <p style="font-size:0.78rem;color:var(--muted);text-align:center;margin-top:0.6rem;">Tap above after paying · We'll confirm within 1 hour</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div class="section-tag">Guest Reviews</div>
+  <h2 class="section-title">Words From <em>Happy</em> Travellers</h2>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">The dhow cruise was absolutely magical — watching the sun set over the Indian Ocean with a cold drink in hand. Rolfam made it effortless and unforgettable.</p><div class="testi-author"><div class="testi-avatar">SN</div><div><div class="testi-name">Sophie N.</div><div class="testi-loc">Nairobi, Kenya</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">We caught two marlins on the deep sea fishing trip. The captain knew exactly where to go. Already planning to come back next season!</p><div class="testi-author"><div class="testi-avatar">TR</div><div><div class="testi-name">Tom R.</div><div class="testi-loc">London, UK</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">The mangrove tour through Mtwapa Creek was a highlight of our entire trip. Our guide was so knowledgeable and passionate about the ecosystem.</p><div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Amina M.</div><div class="testi-loc">Dubai, UAE</div></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Rolfam<span>.</span> Tours & Travel</div>
+  <p>Your gateway to the authentic Kenyan coast — from Mtwapa with love.</p>
+  <div class="footer-links">
+    <a href="#tours">Tours</a>
+    <a href="#about">About</a>
+    <a href="#booking">Book Now</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-bottom">© 2025 Rolfam Tours & Travel · Mtwapa, Kilifi County, Kenya</div>
+</footer>
+
+<div class="modal-overlay" id="tourModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-tour-price" id="modalPrice"></div>
+    <p id="modalDesc" style="color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.5rem;"></p>
+    <ul id="modalIncludes" style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem;"></ul>
+    <button class="btn-primary" style="width:100%" onclick="closeModal();document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book This Tour</button>
+  </div>
+</div>
+
+<script>
+  const tours = [
+    { name:"Dhow Sunset Cruise", badge:"Most Popular", price:"KES 4,500", per:"/ person", desc:"Sail the Indian Ocean on a traditional dhow as the sun dips below the horizon. Includes light refreshments, a Swahili snack platter, and soft drinks.", img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80", includes:["🌅 2-hour sunset sail","🍹 Drinks & snacks included","👨‍✈️ Experienced dhow captain","📸 Photo stops"], duration:"2 hrs" },
+    { name:"Deep Sea Fishing", badge:"Adventure", price:"KES 12,000", per:"/ boat (up to 4)", desc:"Head offshore in search of marlin, sailfish, and yellowfin tuna. Full fishing gear provided. Keep your catch or release — your choice.", img:"https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=80", includes:["🎣 Full fishing gear","🛥️ Motorised boat & fuel","🐟 Keep your catch","💧 Water & snacks"], duration:"6 hrs" },
+    { name:"Snorkelling at Watamu Marine Park", badge:"Marine Park", price:"KES 5,500", per:"/ person", desc:"Explore the vibrant coral reefs of Watamu Marine National Park — a UNESCO protected site teeming with tropical fish, turtles, and starfish.", img:"https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80", includes:["🤿 Snorkel gear included","🚐 Transport from Mtwapa","🐢 Turtle spotting","🏖️ Beach time"], duration:"Full day" },
+    { name:"Mtwapa Creek Mangrove Tour", badge:"Eco Tour", price:"KES 3,500", per:"/ person", desc:"Glide through the mangrove forests of Mtwapa Creek by boat. Learn about the rich ecosystem, spot crabs, herons, and kingfishers along the way.", img:"https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&q=80", includes:["🌿 Nature guide included","🦀 Mangrove ecosystem tour","🦅 Bird watching","🍃 Eco-certified tour"], duration:"3 hrs" },
+    { name:"Kilifi Bay Boat Safari", badge:"Scenic", price:"KES 6,000", per:"/ person", desc:"Cruise Kilifi's stunning baobab-lined creek, swim at a secluded sandbank, and soak in the ancient atmosphere of one of Kenya's most beautiful bays.", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80", includes:["⛵ Boat cruise","🏊 Sandbank swim stop","🌴 Baobab forest views","🧊 Cooler box & drinks"], duration:"4 hrs" },
+    { name:"Mida Creek Kayak Adventure", badge:"Active", price:"KES 4,000", per:"/ person", desc:"Paddle through the peaceful waters of Mida Creek, a UNESCO-recognised wetland. Watch flamingos, wade birds, and enjoy the tranquillity of untouched nature.", img:"https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee?w=600&q=80", includes:["🚣 Kayak & paddle gear","🦩 Flamingo spotting","🌊 Guided route","💧 Water & light snack"], duration:"3 hrs" }
+  ];
+  const tourPrices = { 'Dhow Sunset Cruise':4500, 'Deep Sea Fishing':12000, 'Snorkelling at Watamu Marine Park':5500, 'Mtwapa Creek Mangrove Tour':3500, 'Kilifi Bay Boat Safari':6000, 'Mida Creek Kayak Adventure':4000 };
+  let lastBooking = {}, depositAmount = 0;
+
+  const grid = document.getElementById('toursGrid');
+  tours.forEach((t,i) => {
+    grid.innerHTML += `<div class="tour-card" onclick="openModal(${i})"><div class="tour-img-wrap"><img class="tour-img" src="${t.img}" alt="${t.name}" loading="lazy"/></div><div class="tour-body"><span class="tour-badge">${t.badge}</span><div class="tour-name">${t.name}</div><p class="tour-desc">${t.desc.substring(0,90)}…</p><div class="tour-footer"><div class="tour-price">${t.price} <span>${t.per}</span></div><button class="btn-book" onclick="event.stopPropagation();document.getElementById('tourSelect').value='${t.name}';document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book</button></div></div></div>`;
+  });
+
+  function openModal(i) {
+    const t = tours[i];
+    document.getElementById('modalTitle').textContent = t.name;
+    document.getElementById('modalPrice').textContent = t.price+' '+t.per+' · '+t.duration;
+    document.getElementById('modalDesc').textContent = t.desc;
+    document.getElementById('modalIncludes').innerHTML = t.includes.map(x=>`<li style="font-size:0.88rem;color:var(--muted)">${x}</li>`).join('');
+    document.getElementById('tourModal').classList.add('open');
+  }
+  function closeModal() { document.getElementById('tourModal').classList.remove('open'); }
+  document.getElementById('tourModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    lastBooking = { name: document.getElementById('firstName').value+' '+document.getElementById('lastName').value, email: document.getElementById('email').value, phone: document.getElementById('phone').value, tour: document.getElementById('tourSelect').value, date: document.getElementById('tourDate').value, guests: document.getElementById('guests').value, requests: document.getElementById('requests').value||'None' };
+    const total = (tourPrices[lastBooking.tour]||0) * parseInt(lastBooking.guests||1);
+    depositAmount = Math.round(total * 0.5);
+    const fmt = 'KES '+depositAmount.toLocaleString();
+    fetch('/', { method:'POST', body: new FormData(e.target) }).catch(()=>{});
+    document.getElementById('bookingFormWrap').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('bookingSummary').textContent = lastBooking.tour+' · '+lastBooking.date+' · '+lastBooking.guests+' guest(s)';
+    document.getElementById('depositAmt').textContent = fmt;
+    document.getElementById('pbAmt').textContent = fmt;
+    document.getElementById('tillAmt').textContent = fmt;
+  }
+
+  function showPayTab(tab) {
+    document.getElementById('panelPaybill').style.display = tab==='paybill'?'block':'none';
+    document.getElementById('panelTill').style.display = tab==='till'?'block':'none';
+    document.getElementById('tabPaybill').style.cssText += tab==='paybill'?';background:var(--ocean);color:white;border-color:var(--ocean)':';background:white;color:var(--muted);border-color:#d8e8eb';
+    document.getElementById('tabTill').style.cssText += tab==='till'?';background:var(--ocean);color:white;border-color:var(--ocean)':';background:white;color:var(--muted);border-color:#d8e8eb';
+  }
+
+  function sendWhatsApp() {
+    const waNumber = '254700000000'; // ← Replace with your real number
+    const msg = `🌊 *Rolfam Tours — Booking & Payment*\n\n👤 Name: ${lastBooking.name}\n📞 Phone: ${lastBooking.phone}\n✉️ Email: ${lastBooking.email}\n🗺️ Tour: ${lastBooking.tour}\n📅 Date: ${lastBooking.date}\n👥 Guests: ${lastBooking.guests}\n📝 Requests: ${lastBooking.requests}\n\n💰 Deposit Paid: KES ${depositAmount.toLocaleString()}\n\n_M-Pesa confirmation screenshot attached_`;
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  document.getElementById('tourDate').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
